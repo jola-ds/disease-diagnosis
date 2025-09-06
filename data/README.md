@@ -2,8 +2,8 @@
 
 This dataset is generated using a **custom synthetic data generator** that simulates patient-level disease occurrence and symptom profiles in Nigeria. The generator is designed to reflect realistic demographic distributions, disease prevalence, seasonal effects, symptom correlations, and comorbidities.
 
-- For domain and epidemiological reference, see [Nigerian Disease Research](nigerian_disease_research.md).
-- For the generator script see [Data Generator](src/data_generator.py).
+- For domain and epidemiological reference, see [Nigerian Disease Research](https://docs.google.com/document/d/1714Z3BE6oLYbBLv-eDndgIXXw2Xk8HMENTNn_d4ZQes/edit?usp=sharing).
+- For the generator script see [Data Generator](../src/data_generator.py).
 
 ## 1. Patient Demographics
 
