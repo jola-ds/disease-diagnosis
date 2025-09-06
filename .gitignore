@@ -9,12 +9,8 @@ __pycache__/
 # Jupyter
 .ipynb_checkpoints/
 
-# Data
-data/*.csv 
-
 # Models / plots
 models/*.pkl
-plots/*.png
 
 # OS files
 .DS_Store
