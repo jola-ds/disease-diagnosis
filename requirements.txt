@@ -16,3 +16,8 @@ jupyter
 
 # App/demo
 streamlit
+
+# API
+fastapi
+uvicorn
+pydantic
