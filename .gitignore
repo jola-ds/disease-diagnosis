@@ -9,9 +9,6 @@ __pycache__/
 # Jupyter
 .ipynb_checkpoints/
 
-# Models / plots
-models/*.pkl
-
 # OS files
 .DS_Store
 Thumbs.db
