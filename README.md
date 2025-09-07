@@ -46,11 +46,15 @@ ultimately improve patient outcomes.
 
 ---
 
+## Solution – [HealthLens](https://disease-diagnosis-client.vercel.app/)
+**HealthLens** is an AI-powered diagnostic tool that predicts likely diseases from patient symptoms and demographics.  
+
+---
+
 ## Features
 
-- Confidence intervals for model metrics via Bootstrap resampling (uncertainty estimates)
+- Interface for Real-time prediction
 - Confidence score for each prediction (model probability for the predicted disease)
-- Interactive demo for real-time prediction
 
 ---
 
