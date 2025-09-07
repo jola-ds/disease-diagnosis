@@ -25,11 +25,18 @@ app = FastAPI(
 )
 
 # Add CORS middleware
+# Get allowed origins from environment variable or use default
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "*").split(",")
+if allowed_origins == ["*"]:
+    allowed_origins = ["*"]  # Keep as list for development
+else:
+    allowed_origins = [origin.strip() for origin in allowed_origins]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Configure this properly for production
+    allow_origins=allowed_origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
 
@@ -66,8 +73,8 @@ class PatientInput(BaseModel):
     runny_nose: int = Field(..., ge=0, le=1, description="Runny nose (0=no, 1=yes)")
     dysuria: int = Field(..., ge=0, le=1, description="Dysuria (0=no, 1=yes)")
 
-    class Config:
-        schema_extra = {
+    model_config = {
+        "json_schema_extra": {
             "example": {
                 "age_band": "25-44",
                 "gender": "female",
@@ -91,6 +98,7 @@ class PatientInput(BaseModel):
                 "dysuria": 0
             }
         }
+    }
 
 class PredictionResponse(BaseModel):
     """Response model for disease prediction"""
