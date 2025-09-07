@@ -30,7 +30,7 @@ Machine learning (ML) offers a way forward. Research has shown its potential in:
 - Enhancing outbreak prediction for diseases like cholera
 ([Exploration Journals, 2023](https://www.explorationpub.com/Journals/edht/Article/101140))
 
-Full Reference List: [`citations.md`](citations.md)
+Full Reference: [`citations.md`](citations.md)
 
 ### Scope
 
@@ -81,20 +81,13 @@ For a thorough overview, see [`data/README.md`](data/README.md)
    - Feature selection: symptoms + basic patient data.
 
 2. **Modeling**
-   - Random Forest & XGBoost classifiers.
+   - Initially Random Forest, final model - XGBoost classifiers.
    - Balancing via sample weights to handle class imbalance.
 
 3. **Evaluation**
    - Metrics: Accuracy, classification report.
    - Visualization: Confusion matrices, calibration plots.
-   - Real-world add-on: Bootstrap confidence intervals to estimate uncertainty.
-
----
-
-## Notebooks
-
-- [`notebooks/disease_diagnosis_demo.ipynb`](notebooks/disease_diagnosis_demoe.ipynb): Full demo with preprocessing, model
-training, evaluation, and confidence intervals.
+   - : Bootstrap confidence intervals to estimate uncertainty.
 
 ---
 
@@ -111,26 +104,9 @@ training, evaluation, and confidence intervals.
 
 Final model: **XGBoost**, selected after baseline comparison with Random Forest.
 
-- **Overall accuracy:** **74.6%** on the held-out test set (2,000 patients).  
-- **Macro F1-score:** ~0.70 across 11 classes.  
-- **Weighted F1-score:** 0.75 (reflecting balanced performance across common and less common diseases).  
-
-### Per-class highlights
-
-- **Strong performance:**  
-  - *Malaria* (F1 = 0.86)  
-  - *Measles* (0.82)  
-  - *Healthy* (0.89)  
-
-- **Moderate performance:**  
-  - *Tuberculosis* (0.66)  
-  - *Typhoid* (0.68)  
-
-- **Lower performance:**  
-  - *Hypertension* (recall = 0.47), reflecting higher class difficulty.  
-
-Confusion matrices and calibration plots are available in the [`/plots`](plots/) folder.  
-Full classification reports and bootstrap confidence intervals are documented in the [notebook](notebooks/disease_diagnosis_demo.ipynb).  
+- **Accuracy:** **92.5%**  
+- **Macro F1-score:**  93%
+- **Weighted F1-score:** 93%
 
 ---
 
@@ -141,8 +117,8 @@ Follow these steps to set up and run the Disease Diagnosis Project.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/<your-org>/<your-repo>.git
-cd <your-repo>
+git clone https://github.com/<jola-ds>/<disease-diagnosis>.git
+cd <disease-diagnosis>
 ```
 
 ### 2. (Recommended) Create a Virtual Environment
@@ -161,19 +137,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 4. Run the Notebook
-
-You can explore the full workflow, data generation, and model evaluation in the Jupyter notebook:
-
-```bash
-jupyter notebook notebooks/disease_diagnosis_demo.ipynb
-```
-
-Or open the notebook directly in Visual Studio Code and use the built-in Jupyter support.
-
----
-
-### 5. Command-Line Usage
+### 4. Command-Line Usage
 
 ```bash
 # Train and save the best model
@@ -182,7 +146,7 @@ python main.py train
 # Evaluate the saved model on the test set
 python main.py evaluate --model models/final_model.pkl
 
-# Run a quick single-sample prediction demo
+# Run the pipeline
 python main.py demo --model models/final_model.pkl
 ```
 
@@ -202,15 +166,15 @@ disease-diagnosis/
 │   ├── README.md
 ├── models/
 │   └── *.pkl
-├── notebooks/
-│   └── disease_diagnosis_demo.ipynb
 ├── plots/
 │   ├── confusion_matrix_*.png
 │   ├── calibration_plot_*.png
 ├── src/
-│   └── generator.py
+│   ├── generator.py
+│   ├── train.py
+│   ├── eval.py
+│   ├── demo.py
+├── main.py
 ├── requirements.txt
 ├── README.md
 ├── citations.md              <-- full references & citations
-└── .gitignore
-```
