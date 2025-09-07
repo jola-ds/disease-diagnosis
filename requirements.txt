@@ -16,3 +16,4 @@ jupyter
 
 # App/demo
 streamlit
+plotly
