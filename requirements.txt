@@ -1,23 +1,17 @@
-# Core stack
-numpy
-pandas
+# Core data processing
+numpy==2.3.2
+pandas==2.3.2
 
 # Machine learning
-scikit-learn
-xgboost
-joblib
+scikit-learn==1.7.1
+xgboost==3.0.5
+joblib==1.5.2
 
-# Visualization
-matplotlib
-seaborn
+# API framework
+fastapi==0.116.1
+uvicorn==0.35.0
+pydantic==2.11.7
 
-# Notebook environment
-jupyter
-
-# App/demo
-streamlit
-
-# API
-fastapi
-uvicorn
-pydantic
+# Optional: Only include if you need visualization in your API
+# matplotlib==3.10.6
+# seaborn==0.13.2
