@@ -54,24 +54,64 @@ class PatientInput(BaseModel):
     gender: str = Field(..., description="Gender: 'male' or 'female'")
     setting: str = Field(..., description="Setting: 'urban' or 'rural'")
     region: str = Field(..., description="Region: 'north', 'south', 'east', 'west', 'middle_belt'")
-    season: str = Field(..., description="Season: 'dry' or 'rainy'")
+    season: str = Field(..., description="Season: 'dry', 'rainy', or 'transition'")
     
-    # Symptoms (binary: 0 or 1)
+    # General symptoms (binary: 0 or 1)
     fever: int = Field(..., ge=0, le=1, description="Fever (0=no, 1=yes)")
     headache: int = Field(..., ge=0, le=1, description="Headache (0=no, 1=yes)")
     cough: int = Field(..., ge=0, le=1, description="Cough (0=no, 1=yes)")
+    chronic_cough: int = Field(..., ge=0, le=1, description="Chronic cough (0=no, 1=yes)")
+    productive_cough: int = Field(..., ge=0, le=1, description="Productive cough (0=no, 1=yes)")
     fatigue: int = Field(..., ge=0, le=1, description="Fatigue (0=no, 1=yes)")
     body_ache: int = Field(..., ge=0, le=1, description="Body ache (0=no, 1=yes)")
     chills: int = Field(..., ge=0, le=1, description="Chills (0=no, 1=yes)")
     sweats: int = Field(..., ge=0, le=1, description="Sweats (0=no, 1=yes)")
+    night_sweats: int = Field(..., ge=0, le=1, description="Night sweats (0=no, 1=yes)")
+    weight_loss: int = Field(..., ge=0, le=1, description="Weight loss (0=no, 1=yes)")
+    loss_of_appetite: int = Field(..., ge=0, le=1, description="Loss of appetite (0=no, 1=yes)")
+    
+    # GI symptoms
     nausea: int = Field(..., ge=0, le=1, description="Nausea (0=no, 1=yes)")
     vomiting: int = Field(..., ge=0, le=1, description="Vomiting (0=no, 1=yes)")
     diarrhea: int = Field(..., ge=0, le=1, description="Diarrhea (0=no, 1=yes)")
+    constipation: int = Field(..., ge=0, le=1, description="Constipation (0=no, 1=yes)")
     abdominal_pain: int = Field(..., ge=0, le=1, description="Abdominal pain (0=no, 1=yes)")
-    loss_of_appetite: int = Field(..., ge=0, le=1, description="Loss of appetite (0=no, 1=yes)")
+    epigastric_pain: int = Field(..., ge=0, le=1, description="Epigastric pain (0=no, 1=yes)")
+    heartburn: int = Field(..., ge=0, le=1, description="Heartburn (0=no, 1=yes)")
+    hunger_pain: int = Field(..., ge=0, le=1, description="Hunger pain (0=no, 1=yes)")
+    
+    # Respiratory symptoms
     sore_throat: int = Field(..., ge=0, le=1, description="Sore throat (0=no, 1=yes)")
     runny_nose: int = Field(..., ge=0, le=1, description="Runny nose (0=no, 1=yes)")
+    chest_pain: int = Field(..., ge=0, le=1, description="Chest pain (0=no, 1=yes)")
+    shortness_of_breath: int = Field(..., ge=0, le=1, description="Shortness of breath (0=no, 1=yes)")
+    rapid_breathing: int = Field(..., ge=0, le=1, description="Rapid breathing (0=no, 1=yes)")
+    hemoptysis: int = Field(..., ge=0, le=1, description="Hemoptysis (0=no, 1=yes)")
+    
+    # Genitourinary symptoms
     dysuria: int = Field(..., ge=0, le=1, description="Dysuria (0=no, 1=yes)")
+    polyuria: int = Field(..., ge=0, le=1, description="Polyuria (0=no, 1=yes)")
+    oliguria: int = Field(..., ge=0, le=1, description="Oliguria (0=no, 1=yes)")
+    
+    # Metabolic symptoms
+    polydipsia: int = Field(..., ge=0, le=1, description="Polydipsia (0=no, 1=yes)")
+    polyphagia: int = Field(..., ge=0, le=1, description="Polyphagia (0=no, 1=yes)")
+    blurred_vision: int = Field(..., ge=0, le=1, description="Blurred vision (0=no, 1=yes)")
+    
+    # Neurological symptoms
+    dizziness: int = Field(..., ge=0, le=1, description="Dizziness (0=no, 1=yes)")
+    confusion: int = Field(..., ge=0, le=1, description="Confusion (0=no, 1=yes)")
+    
+    # Dermatological/Physical signs
+    rash: int = Field(..., ge=0, le=1, description="Rash (0=no, 1=yes)")
+    maculopapular_rash: int = Field(..., ge=0, le=1, description="Maculopapular rash (0=no, 1=yes)")
+    rose_spots: int = Field(..., ge=0, le=1, description="Rose spots (0=no, 1=yes)")
+    conjunctivitis: int = Field(..., ge=0, le=1, description="Conjunctivitis (0=no, 1=yes)")
+    lymph_nodes: int = Field(..., ge=0, le=1, description="Lymph nodes (0=no, 1=yes)")
+    
+    # Infection-related symptoms
+    recurrent_infections: int = Field(..., ge=0, le=1, description="Recurrent infections (0=no, 1=yes)")
+    oral_thrush: int = Field(..., ge=0, le=1, description="Oral thrush (0=no, 1=yes)")
 
     model_config = {
         "json_schema_extra": {
@@ -84,18 +124,44 @@ class PatientInput(BaseModel):
                 "fever": 1,
                 "headache": 1,
                 "cough": 0,
+                "chronic_cough": 0,
+                "productive_cough": 0,
                 "fatigue": 1,
                 "body_ache": 1,
                 "chills": 1,
                 "sweats": 0,
+                "night_sweats": 0,
+                "weight_loss": 0,
+                "loss_of_appetite": 1,
                 "nausea": 0,
                 "vomiting": 0,
                 "diarrhea": 0,
+                "constipation": 0,
                 "abdominal_pain": 0,
-                "loss_of_appetite": 1,
+                "epigastric_pain": 0,
+                "heartburn": 0,
+                "hunger_pain": 0,
                 "sore_throat": 0,
                 "runny_nose": 0,
-                "dysuria": 0
+                "chest_pain": 0,
+                "shortness_of_breath": 0,
+                "rapid_breathing": 0,
+                "hemoptysis": 0,
+                "dysuria": 0,
+                "polyuria": 0,
+                "oliguria": 0,
+                "polydipsia": 0,
+                "polyphagia": 0,
+                "blurred_vision": 0,
+                "dizziness": 0,
+                "confusion": 0,
+                "rash": 0,
+                "maculopapular_rash": 0,
+                "rose_spots": 0,
+                "conjunctivitis": 0,
+                "lymph_nodes": 0,
+                "recurrent_infections": 0,
+                "oral_thrush": 0
             }
         }
     }
@@ -267,9 +333,15 @@ async def get_model_info():
         "total_classes": len(class_names),
         "features": [
             "age_band", "gender", "setting", "region", "season",
-            "fever", "headache", "cough", "fatigue", "body_ache", "chills",
-            "sweats", "nausea", "vomiting", "diarrhea", "abdominal_pain",
-            "loss_of_appetite", "sore_throat", "runny_nose", "dysuria"
+            "fever", "headache", "cough", "chronic_cough", "productive_cough", 
+            "fatigue", "body_ache", "chills", "sweats", "night_sweats", 
+            "weight_loss", "loss_of_appetite", "nausea", "vomiting", "diarrhea", 
+            "constipation", "abdominal_pain", "epigastric_pain", "heartburn", 
+            "hunger_pain", "sore_throat", "runny_nose", "chest_pain", 
+            "shortness_of_breath", "rapid_breathing", "hemoptysis", "dysuria", 
+            "polyuria", "oliguria", "polydipsia", "polyphagia", "blurred_vision", 
+            "dizziness", "confusion", "rash", "maculopapular_rash", "rose_spots", 
+            "conjunctivitis", "lymph_nodes", "recurrent_infections", "oral_thrush"
         ],
         "accuracy": "74.6% (on test set)",
         "description": "Trained on synthetic Nigerian hospital data for disease prediction"
