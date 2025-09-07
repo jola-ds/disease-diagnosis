@@ -9,7 +9,8 @@ if __name__ == "__main__":
     df = pd.read_csv("data/synthetic_dataset.csv")
 
     # ===== Split features & labels =====
-    X = df.drop("diagnosis", axis=1)
+    X = df.drop(["diagnosis", "patient_id", "generation_timestamp"], axis=1)
+
     y = df["diagnosis"]
 
     # ===== Encode labels =====
