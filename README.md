@@ -1,10 +1,12 @@
-# Disease Diagnosis Project
+# HealthLens: Disease Diagnosis Prediction Project
 
 ## Overview
 
-A machine learning project that predicts diseases from symptoms and patient data.
+A machine learning project that predicts disease diagnosis from symptoms and patient data.
 This project demonstrates how data science can support early diagnosis and healthcare
-decision-making in low-resource settings.
+decision-making in low-resource settings. It is designed as a baseline solution with room for future optimisation.
+
+This project is a baseline solution with room for future optimisation, with current constraints and next steps detailed at the end.
 
 ---
 
@@ -39,7 +41,7 @@ context-aware disease prediction tools. Using **domain-informed synthetic Nigeri
 hospital data**, a machine learning predictor was tailored to local healthcare
 realities.
 
-⚠️ While not a substitute for clinical expertise, this system demonstrates how
+⚠️ This tool is for educational purposes only. While not a substitute for clinical expertise, this system demonstrates how
 AI-driven models can serve as decision support tools for healthcare workers in
 low-resource settings—helping flag likely diseases earlier, guide triage, and
 ultimately improve patient outcomes.
@@ -47,14 +49,19 @@ ultimately improve patient outcomes.
 ---
 
 ## Solution – [HealthLens](https://disease-diagnosis-client.vercel.app/)
-**HealthLens** is an AI-powered diagnostic tool that predicts likely diseases from patient symptoms and demographics.  
+**HealthLens** is an AI-powered diagnostic tool that predicts likely diseases from patient symptoms and demographics, providing fast and accessible support for preliminary screening.
+It is designed as a baseline solution with room for future optimization.
 
 ---
 
-## Features
-
-- Interface for Real-time prediction
-- Confidence score for each prediction (model probability for the predicted disease)
+## 🌐 Interactive Interface Features
+- **Real-time Prediction** – Input patient demographics and symptoms to instantly get a predicted disease.  
+- **Confidence Score (Top Prediction)** – Displays the model’s probability for the most likely disease.  
+- **Confidence Distribution (Other Diseases)** – Shows probabilities for other possible diseases, giving users insight into alternative diagnoses.  
+- **Symptom Grouping** – Symptoms are organized into **8 intuitive categories** (e.g., General, Respiratory, Gastrointestinal, Metabolic, and Others) for easier navigation.  
+- **Explanatory Tooltips** – Each symptom comes with a **short description**, helping users understand what the symptom means before selecting it.  
+- **User-Friendly Form** – Simple and intuitive input fields for age, gender, setting, and symptoms.  
+- **Results Display** – Clear visualization of likely and alternative diseases, with interpretation.  
 
 ---
 
@@ -91,7 +98,19 @@ For a thorough overview, see [`data/README.md`](data/README.md)
 3. **Evaluation**
    - Metrics: Accuracy, classification report.
    - Visualization: Confusion matrices, calibration plots.
-   - : Bootstrap confidence intervals to estimate uncertainty.
+   - Bootstrap confidence intervals to estimate uncertainty.
+
+---
+
+## Results (XGBoost Classifier)
+
+Final model: **XGBoost**, selected after baseline comparison with Random Forest.
+
+- **Accuracy:** 92.5%  
+- **Macro F1-score:** 93%  
+- **Weighted F1-score:** 93%  
+
+This baseline implementation establishes a strong benchmark, with room for future optimization and refinement.
 
 ---
 
@@ -104,16 +123,6 @@ For a thorough overview, see [`data/README.md`](data/README.md)
 
 ---
 
-## Results (XGBoost Classifier)
-
-Final model: **XGBoost**, selected after baseline comparison with Random Forest.
-
-- **Accuracy:** **92.5%**  
-- **Macro F1-score:**  93%
-- **Weighted F1-score:** 93%
-
----
-
 ## Getting Started
 
 Follow these steps to set up and run the Disease Diagnosis Project.
@@ -121,8 +130,8 @@ Follow these steps to set up and run the Disease Diagnosis Project.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/<jola-ds>/<disease-diagnosis>.git
-cd <disease-diagnosis>
+git clone https://github.com/jola-ds/disease-diagnosis.git
+cd disease-diagnosis
 ```
 
 ### 2. (Recommended) Create a Virtual Environment
@@ -141,7 +150,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 4. Command-Line Usage
+### 4. Usage
 
 ```bash
 # Train and save the best model
@@ -152,6 +161,11 @@ python main.py evaluate --model models/final_model.pkl
 
 # Run the pipeline
 python main.py demo --model models/final_model.pkl
+```
+Alternatively, explore interactively:
+
+```bash
+jupyter notebook notebooks/disease_diagnosis_demo.ipynb
 ```
 
 ---
@@ -170,6 +184,8 @@ disease-diagnosis/
 │   ├── README.md
 ├── models/
 │   └── *.pkl
+├── notebooks/
+│   └── disease_diagnosis_demo.ipynb
 ├── plots/
 │   ├── confusion_matrix_*.png
 │   ├── calibration_plot_*.png
@@ -182,3 +198,45 @@ disease-diagnosis/
 ├── requirements.txt
 ├── README.md
 ├── citations.md              <-- full references & citations
+```
+
+## Current Limitations
+
+- **Lack of patient history:** Present model generates single snapshots; future iterations could simulate patient journeys over time.  
+- **Assumptions vs. reality:** Probabilities are based on informed assumptions, not formally calibrated real-world datasets. 
+
+## Future Improvements
+
+### Enhanced Clinical Modeling
+- Severity stratification (mild, moderate, severe categories)  
+- Symptom duration modeling (hours, days, weeks, months)  
+- Integration of laboratory values for more realistic diagnostics  
+- Complication pathways to capture disease progression
+- Collaboration with **domain experts** to validate assumptions, refine features, and improve clinical realism.
+
+### Better Epidemiological Realism
+- Geographic clustering (disease hotspots, local epidemics)  
+- Healthcare access modeling (delayed presentation, treatment gaps)  
+- Nutritional status impacts (malnutrition influencing symptoms)  
+
+### Data Quality Enhancements
+- Realistic missing data patterns in symptom reporting  
+- Measurement error (e.g., thermometer accuracy, subjective symptoms)  
+- Reporting bias from cultural or behavioral factors  
+- Follow-up modeling for treatment response and recovery timelines  
+
+### Technical Improvements
+- Implementation of **hyperparameter tuning** to optimize model performance.  
+- Exploration of **ensemble methods** (e.g., Random Forests, Gradient Boosting, or stacking) for better predictive accuracy.  
+- Incorporation of **model explainability techniques** (e.g., SHAP, LIME) to understand feature importance and build trust in predictions.   
+
+### Additional Diseases to Model
+- Sickle cell disease
+- Meningitis
+- Hepatitis B 
+- Schistosomiasis
+
+---
+
+⚠️ *Note: This model is excellent for training basic diagnostic algorithms, but it represents “idealised” clinical presentations rather than the complexity of real-world healthcare data.*
+ 
