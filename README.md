@@ -4,7 +4,7 @@
 
 A machine learning project that predicts disease diagnosis from symptoms and patient data.
 This project demonstrates how data science can support early diagnosis and healthcare
-decision-making in low-resource settings. It is designed as a baseline solution with room for future optimisation.
+decision-making in low-resource settings.
 
 This project is a baseline solution with room for future optimisation, with current constraints and next steps detailed at the end.
 
