@@ -687,7 +687,7 @@ class NigerianDiseaseGenerator:
                 setting_dist = df[df['diagnosis'] == disease]['setting'].value_counts(normalize=True)
                 stats['setting_disease_patterns'][disease] = (setting_dist * 100).round(1).to_dict()
 
-        # Region-disease patterns (Added this section)
+        # Region-disease patterns
         for disease in df['diagnosis'].unique():
             if disease != 'healthy':
                 region_dist = df[df['diagnosis'] == disease]['region'].value_counts(normalize=True)
