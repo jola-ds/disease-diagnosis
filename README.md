@@ -1,5 +1,5 @@
 # HealthLens: Disease Diagnosis Prediction Project
-
+[DEMO](https://disease-diagnosis-client.vercel.app/)
 ## Overview
 
 A machine learning project that predicts disease diagnosis from symptoms and patient data.
